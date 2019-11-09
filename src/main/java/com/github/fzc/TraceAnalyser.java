@@ -23,8 +23,6 @@ import java.util.regex.Pattern;
  */
 public class TraceAnalyser {
 
-    private static final Logger LOG = Logger.getLogger(TraceAnalyser.class.getName());
-
     private static final Pattern CLASS_NAME_PATTERN = Pattern.compile(
             "(?<=Compiled[\\s]from[\\s]\")([\\w]+)(?=[.]java)");
 
@@ -72,7 +70,6 @@ public class TraceAnalyser {
                 try {
                     String fullPath = file.toString();
                     if (fullPath.endsWith(".class")) {
-                        LOG.info("fullPath: " + fullPath);
                         JavapTask task = new JavapTask();
                         String[] args = { "-s", "-private", "-c", fullPath };
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -104,9 +101,6 @@ public class TraceAnalyser {
                 return FileVisitResult.CONTINUE;
             }
         });
-
-        LOG.info("total nodes: " + count);
-        LOG.info("called: " + callGraph.getNumEdges());
 
         if (!startingVertices.isEmpty()) {
             for (Integer vertex : startingVertices) {
@@ -151,7 +145,6 @@ public class TraceAnalyser {
                     }
                     signature = classSignature + "." + methodName + ":" +
                             methodSignature;
-                    LOG.info("signature " + signature);
                 } else if (!StringUtil.isNullOrEmpty(signature)) {
                     /**
                      * method body
@@ -167,7 +160,6 @@ public class TraceAnalyser {
                                 methodPattern)) {
                             Integer vertex = callGraph.getId(calledPattern);
                             startingVertices.add(vertex);
-                            LOG.info("starting: " + vertex + " " + calledPattern);
                         }
                         callGraph.add(calledPattern, signature);
 
