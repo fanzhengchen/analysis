@@ -3,7 +3,6 @@ package com.github.fzc;
 import com.google.common.collect.Sets;
 import com.sun.tools.javap.JavapTask;
 import io.netty.util.internal.StringUtil;
-import org.apache.log4j.Logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
