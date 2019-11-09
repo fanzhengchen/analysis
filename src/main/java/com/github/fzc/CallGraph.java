@@ -4,7 +4,6 @@ package com.github.fzc;
  * @author shengxun
  * @date 12/25/18 12:25 PM
  */
-import org.apache.log4j.Logger;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -16,8 +15,6 @@ import java.util.HashMap;
  * @date 12/24/18 10:37 PM
  */
 public class CallGraph {
-
-    private static final Logger LOG = Logger.getLogger(CallGraph.class);
 
     private static final int SIZE = 16;
 
