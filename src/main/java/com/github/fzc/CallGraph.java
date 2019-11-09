@@ -5,6 +5,9 @@ package com.github.fzc;
  * @date 12/25/18 12:25 PM
  */
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -15,6 +18,8 @@ import java.util.HashMap;
  * @date 12/24/18 10:37 PM
  */
 public class CallGraph {
+
+    private Logger LOG = LoggerFactory.getLogger(CallGraph.class);
 
     private static final int SIZE = 16;
 

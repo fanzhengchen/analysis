@@ -2,7 +2,9 @@ package com.github.fzc;
 
 import com.google.common.collect.Sets;
 import com.sun.tools.javap.JavapTask;
-import io.netty.util.internal.StringUtil;
+import org.codehaus.plexus.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,6 +23,8 @@ import java.util.regex.Pattern;
  * @date 12/25/18 12:26 PM
  */
 public class TraceAnalyser {
+
+    private Logger LOG = LoggerFactory.getLogger(CallGraph.class);
 
     private static final Pattern CLASS_NAME_PATTERN = Pattern.compile(
             "(?<=Compiled[\\s]from[\\s]\")([\\w]+)(?=[.]java)");
@@ -144,7 +148,7 @@ public class TraceAnalyser {
                     }
                     signature = classSignature + "." + methodName + ":" +
                             methodSignature;
-                } else if (!StringUtil.isNullOrEmpty(signature)) {
+                } else if (!StringUtils.isEmpty(signature)) {
                     /**
                      * method body
                      */
